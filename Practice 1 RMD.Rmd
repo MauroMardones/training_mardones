@@ -1,0 +1,54 @@
+---
+title: "Practice 1 RMD"
+author: "Mauro Mardones"
+date: "2023-02-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(readr)
+library(skimr)
+```
+
+
+
+## Introduction
+
+This data set contains North Pole Environmental Observatory Bottle Chemistry data. This data set includes diverse measurements of seawater chemistry along with supporting conductivity, temperature, and depth (CTD) data from the Arctic Ocean near the North Pole. Measurements were taken from sea ice platforms each April or May from 2000-2014. Investigators used a CTD-O2 system to measure seawater conductivity, temperature, depth, and dissolved oxygen content, and collected Niskin bottle samples for measurements of salinity, oxygen isotopes composition, total alkalinity, and concentrations of phosphate, silicic acid, nitrate, nitrite, ammonium, and barium. The available in-situ dissolved oxygen measurements were collected beginning in 2002. Beginning with the 2007 deployment, an in-situ ultraviolet spectrophotometer (ISUS) was used to measure nitrate concentrations in the water column. The North Pole Environmental Observatory (NPEO) is a year-round, scientific observatory, deploying various instruments each April in order to learn how the world's northernmost sea helps regulate global climate. Supported by repeat hydrographic profiles, it includes a set of unmanned scientific platforms that record oceanographic, cryospheric, and atmospheric data throughout the year.
+[DCA](http://psc.apl.washington.edu/northpole)
+
+### Read Data 
+
+```{r}
+BGchem<- read_csv("data/BGchem2008data.csv")
+View(BGchem)
+```
+
+### Analysis
+
+#### Calculate summary statistics
+```{r}
+names(BGchem)
+summary(BGchem)
+skim(BGchem)
+```
+
+```{r}
+summary(BGchem)
+nitrate <- mean(BGchem$NO3)
+nitrite <- mean(BGchem$NO2)
+
+
+d <- mean(BGchem$d18O)
+```
+
+
+
+
+

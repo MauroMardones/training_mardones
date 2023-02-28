@@ -1,0 +1,41 @@
+---
+title: "Intro RMD"
+author: "Mauro Mardones"
+output: html_document
+date: "2023-02-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# INTRODUCTION
+
+First exercise in `RMD` format to ACD Curse. We can write different format like *italics* or **bolded**
+
+### Set Libraries 
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+
+An example of chunk inside syntax.
+
+```{r}
+data(iris)
+gplo <- ggplot(iris, aes(Species, Sepal.Width, fill=Species)) +
+  geom_boxplot()+
+  scale_fill_viridis_d()+
+  theme_bw()
+gplo
+
+```
+Another exercise.
+
+```{r}
+BGchem2008data <- read_csv("data/BGchem2008data.csv")
+View(BGchem2008data)
+```
+
