@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readr)
 library(skimr)
+library(here)
 ```
 
 
@@ -27,7 +28,6 @@ This data set contains North Pole Environmental Observatory Bottle Chemistry dat
 
 ```{r}
 BGchem<- read_csv("data/BGchem2008data.csv")
-View(BGchem)
 ```
 
 ### Analysis

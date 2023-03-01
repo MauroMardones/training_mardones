@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Analysis Plan
 
-- Introducction
+- [Introducction](Practice-1-RMD.html)
 - Datacleaninig
 - gap issues
 - 
