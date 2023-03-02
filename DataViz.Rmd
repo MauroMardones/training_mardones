@@ -57,8 +57,11 @@ esc3 <- esc2 %>%
 Plot
 ```{r}
 ggplot(esc3, 
-       aes(x = Species, y = escapement)) +
+       aes(x = Species, y = escapement,
+           fill=esc3$SASAP.Region)) +
   geom_col()+
+  scale_fill_viridis_d(option = "B",
+                       name="Region")+
   theme_bw()
 ```
 
