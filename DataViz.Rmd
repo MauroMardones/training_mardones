@@ -1,9 +1,22 @@
 ---
 title: "Data_Viz"
-author: "Mauro Mardones"
-date: "2023-03-01"
-output: html_document
+author: "Mauricio Mardones"
+date:  "`r format(Sys.time(), '%d %B, %Y')`"
+link-citations: yes
+linkcolor: blue
+output:
+  html_document:
+    toc: true
+    toc_deep: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    theme: cosmo
+    fontsize: 0.9em
+    linestretch: 1.7
+    code-tools: true
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
