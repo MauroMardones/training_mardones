@@ -1,0 +1,48 @@
+> library(usethis)
+> library(roxygen2)
+> setwd("..")
+> create_package("mytoolsmm")
+
+> usethis::use_apache_license()
+✔ Setting active project to '/home/mardones/mytoolsmm'
+✔ Setting License field in DESCRIPTION to 'Apache License (>= 2)'
+✔ Writing 'LICENSE.md'
+✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
+> usethis::user_r("custom_theme")
+Error: 'user_r' is not an exported object from 'namespace:usethis'
+> usethis::use_r("custom_theme")
+• Modify 'R/custom_theme.R'
+• Call `use_test()` to create a matching test file
+> usethis::use_package("ggplot2")
+✔ Adding 'ggplot2' to Imports field in DESCRIPTION
+• Refer to functions with `ggplot2::fun()`
+> devtools::document()
+ℹ Updating mytoolsmm documentation
+ℹ Loading mytoolsmm
+Writing NAMESPACE
+Writing custom_theme.Rd
+> devtools::install()
+── R CMD build ───────────────────────────────────────────────────────
+✔  checking for file ‘/home/mardones/mytoolsmm/DESCRIPTION’ ...
+─  preparing ‘mytoolsmm’:
+  ✔  checking DESCRIPTION meta-information ...
+─  checking for LF line-endings in source and make files and shell scripts
+─  checking for empty or unneeded directories
+─  building ‘mytoolsmm_0.0.0.9000.tar.gz’
+
+Running /opt/R/4.2.2/lib/R/bin/R CMD INSTALL \
+/tmp/RtmpUuivsC/mytoolsmm_0.0.0.9000.tar.gz --install-tests
+* installing to library ‘/home/mardones/R/x86_64-pc-linux-gnu-library/4.2’
+* installing *source* package ‘mytoolsmm’ ...
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mytoolsmm)
+> library(mytoolsmm)
+>
