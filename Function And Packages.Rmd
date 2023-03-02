@@ -14,10 +14,7 @@ celsius3 <- (airtemps[3]-32)*5/9
 ```
 
 ```{r}
-fahr_to_celsius <- function(fahr) {
-  celsius <- (fahr-32)*5/9
-  return(celsius)
-}
+source("tem_comp.R")
 ```
 
 ```{r}
