@@ -4,12 +4,9 @@
 > create_package("mytoolsmm")
 
 > usethis::use_apache_license()
-✔ Setting active project to '/home/mardones/mytoolsmm'
-✔ Setting License field in DESCRIPTION to 'Apache License (>= 2)'
-✔ Writing 'LICENSE.md'
-✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
-> usethis::user_r("custom_theme")
-Error: 'user_r' is not an exported object from 'namespace:usethis'
+
+
+
 > usethis::use_r("custom_theme")
 • Modify 'R/custom_theme.R'
 • Call `use_test()` to create a matching test file
@@ -17,10 +14,8 @@ Error: 'user_r' is not an exported object from 'namespace:usethis'
 ✔ Adding 'ggplot2' to Imports field in DESCRIPTION
 • Refer to functions with `ggplot2::fun()`
 > devtools::document()
-ℹ Updating mytoolsmm documentation
-ℹ Loading mytoolsmm
-Writing NAMESPACE
-Writing custom_theme.Rd
+
+
 > devtools::install()
 ── R CMD build ───────────────────────────────────────────────────────
 ✔  checking for file ‘/home/mardones/mytoolsmm/DESCRIPTION’ ...
@@ -46,3 +41,4 @@ Running /opt/R/4.2.2/lib/R/bin/R CMD INSTALL \
 * DONE (mytoolsmm)
 > library(mytoolsmm)
 >
+ Voalá!!
