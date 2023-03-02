@@ -14,5 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [Introducction](Practice-1-RMD.html)
 - Data cleaninig
-- gap issues
+- [Data Viz](DataViz.html) 
+- Gap issues
 - 
