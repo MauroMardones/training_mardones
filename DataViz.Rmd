@@ -1,0 +1,64 @@
+---
+title: "Data_Viz"
+author: "Mauro Mardones"
+date: "2023-03-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+  library(leaflet)
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+  library(DT)
+  library(scales) # install.packages("scales")
+```
+```{r}
+data_url <- "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e"
+
+esc <- tryCatch(
+    read.csv("data/escapement.csv"),
+    error=function(cond) {
+        message(paste("Escapement file does not seem to exist, so get it from the KNB."))
+        esc <- read.csv(url(data_url, method = "libcurl"))
+        return(esc)
+    }
+)
+
+head(esc)
+```
+
+```{r}
+realdate <- as.Date(esc$sampleDate, format="%Y-%m-%d")
+
+bitadate <- data.frame(sampleDate=realdate)
+year=as.numeric (format(realdate,"%Y"))
+month=as.numeric (format(realdate,"%m"))
+day=as.numeric (format(realdate,"%d"))
+
+esc2<-cbind(bitadate,day,month,year,esc)
+summary(esc2)
+```
+
+
+```{r}
+glimpse(esc2)
+esc3 <- esc2 %>% 
+  select(-1) %>% 
+  group_by(Species, SASAP.Region, year) %>% 
+  summarize(escapement = sum(DailyCount)) %>% 
+  filter(Species %in% c("Chinook", "Sockeye", "Chum", "Coho", "Pink"))
+```
+
+Plot
+```{r}
+ggplot(esc3, 
+       aes(x = Species, y = escapement)) +
+  geom_col()+
+  theme_bw()
+```
+
