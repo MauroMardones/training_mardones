@@ -19,3 +19,4 @@ knitr::opts_chunk$set(echo = TRUE)
 - [Data Viz](DataViz.html) 
 - Gap issues
 - [Writing functions and packages](Function And Packages.Rmd)
+- [Ìntereactive maps with `leaflet`](Interactive_Plot.R)
