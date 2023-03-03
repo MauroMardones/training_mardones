@@ -21,9 +21,7 @@ This document aims to bring together the main components exercised in the course
 
 
 - [Introducction](Practice-1-RMD.html)
-- Data cleaninig
 - [Data Viz](DataViz.html) 
-- Gap issues
 - [Writing functions and packages](Function-And-Packages.html)
 - [Ìntereactive maps with `leaflet`](Interactive_Plot.html)
 - [Practice Clean Data](Practice_Clean_Manipulation.html) 
