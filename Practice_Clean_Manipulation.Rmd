@@ -78,10 +78,6 @@ pred_species <- assign_species_name(predator_surveys, species) %>%
 ```
 
 
-
-
-
-
 ```{r}
 num_pred <- pred_species %>% 
   group_by(year, common_name) %>% 

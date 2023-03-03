@@ -1,0 +1,66 @@
+---
+title: "Intro_GeoSpatial_Analysis"
+author: "Mauro Mardones"
+date: "2023-03-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(sf)
+library(ggplot2)
+library(leaflet)
+library(scales)
+library(ggmap)
+library(dplyr)
+```
+
+
+```{r}
+## Read in shapefile using sf
+ak_regions <- read_sf("~/training_mardones/data/ak_regions_simp.shp")
+
+plot(ak_regions)  
+```
+```{r}
+class(ak_regions)
+```
+
+Coordinate Reference System
+
+Every sf object needs a coordinate reference system (or crs) defined in order to work with it correctly. A coordinate reference system contains both a datum and a projection. The datum is how you georeference your points (in 3 dimensions!) onto a spheroid. The projection is how these points are mathematically transformed to represent the georeferenced point on a flat piece of paper. All coordinate reference systems require a datum. However, some coordinate reference systems are “unprojected” (also called geographic coordinate systems). Coordinates in latitude/longitude use a geographic (unprojected) coordinate system. One of the most commonly used geographic coordinate systems is WGS 1984.
+
+ESRI has a blog post that explains these concepts in more detail with very helpful diagrams and examples.
+
+You can view what crs is set by using the function `st_crs`
+```{r}
+st_crs(ak_regions)
+```
+
+
+This is pretty confusing looking. Without getting into the details, that long string says that this data has a greographic coordinate system (WGS84) with no projection. A convenient way to reference crs quickly is by using the EPSG code, a number that represents a standard projection and datum. You can check out a list of (lots!) of EPSG codes [here](https://spatialreference.org/ref/epsg/?page=1).
+
+We will use several EPSG codes in this lesson. Here they are, along with their more readable names:
+
+3338: Alaska Albers
+4326: WGS84 (World Geodetic System 1984), used in GPS
+3857: Pseudo-Mercator, used in Google Maps, OpenStreetMap, Bing, ArcGIS, ESRI
+You will often need to transform your geospatial data from one coordinate system to another. The st_transform function does this quickly for us. You may have noticed the maps above looked wonky because of the dateline. We might want to set a different projection for this data so it plots nicer. A good one for Alaska is called the Alaska Albers projection, with an EPSG code of 3338.
+
+
+```{r}
+ak_regions_3338 <- ak_regions %>%
+  st_transform(crs = 3338)
+
+st_crs(ak_regions_3338)
+
+```
+
+```{r}
+plot(ak_regions_3338)
+```
+
