@@ -1,5 +1,6 @@
 ---
-title: "Analysis example"
+title: "Analysis Course Artic Data Center Course"
+subtitle: "Reproducible Practices for Arctic Research Using R"
 author: "Mauro Mardones"
 date: "2023-03-01"
 output: html_document
@@ -10,6 +11,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Objective
+
+This document aims to bring together the main components exercised in the course in html format. It was tried to follow the sequence of the book presented by the instructors.
+
+ Course Book [here](https://learning.nceas.ucsb.edu/2023-02-arctic/index.html)
 
 ## Analysis Plan
 
