@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - Data cleaninig
 - [Data Viz](DataViz.html) 
 - Gap issues
-- [Writing functions and packages](Function And Packages.Rmd)
-- [Ìntereactive maps with `leaflet`](Interactive_Plot.R)
-- [Practice Clean Data](Practice_Clean_Manipulation.Rmd) 
-- [Practice GeoSpatial Maps](Practice_GeoSpatial_Analysis.Rmd)
+- [Writing functions and packages](Function-And-Packages.html)
+- [Ìntereactive maps with `leaflet`](Interactive_Plot.html)
+- [Practice Clean Data](Practice_Clean_Manipulation.html) 
+- [Practice GeoSpatial Maps](Practice_GeoSpatial_Analysis.html)
