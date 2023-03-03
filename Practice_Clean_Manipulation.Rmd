@@ -1,0 +1,120 @@
+---
+title: "Practice Data Cleaning and Manipulation"
+author: "Mauro Mardones"
+date: "2023-03-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message=FALSE)
+```
+
+
+##Load Library 
+
+```{r}
+library(rvest)
+library(readr)
+library(dplyr)
+library(janitor)
+library(tidyverse)
+```
+
+## Scraping bird code species
+
+```{r}
+webpage <- read_html("https://www.pwrc.usgs.gov/bbl/manual/speclist.cfm")
+
+tbls <- html_nodes(webpage, "table") %>% 
+    html_table(fill = TRUE)
+
+species <- tbls[[1]] %>% 
+    clean_names() %>% 
+    select(alpha_code, common_name) %>% 
+    mutate(alpha_code = tolower(alpha_code))
+```
+
+## Load data
+
+```{r}
+nest_data <- read_csv("~/training_mardones/data/Utqiagvik_nest_data.csv")
+predator_surveys <- read_csv("~/training_mardones/data/Utqiagvik_predator_surveys.csv")
+
+```
+
+## change common names
+
+```{r}
+assign_species_name <- function(df, species){
+    if (!("alpha_code" %in% names(species)) |
+        !("species" %in% names(df)) |
+        !("common_name" %in% names(species))){
+      stop("Tables appear to be formatted incorrectly.")
+    }  
+  
+    return_df <- left_join(df, species, by = c("species" = "alpha_code"))
+    
+    if (nrow(return_df) > nrow(df)){
+      warning("Joined table has more rows than original table. Check species table for duplicated code values.")
+    }
+    
+    if (length(which(is.na(return_df$common_name))) > 0){
+      x <- length(which(is.na(return_df$common_name)))
+      warning(paste("Common name has", x, "rows containing NA"))
+    }
+    
+    return(return_df)
+        
+}
+```
+
+
+```{r}
+pred_species <- assign_species_name(predator_surveys, species) %>% 
+    group_by(year, common_name) %>% 
+    summarise(pred_count = sum(count, na.rm = T), .groups = "drop") %>% 
+    filter(!is.na(common_name))
+```
+
+
+
+
+
+
+```{r}
+num_pred <- pred_species %>% 
+  group_by(year, common_name) %>% 
+    summarize(n = n())
+```
+
+plot 1
+```{r}
+npre <- ggplot( pred_species, 
+               aes(year, pred_count))+
+  geom_line()+
+  geom_point()+
+  facet_wrap(~common_name, scales = "free_y")+
+  theme_minimal()
+npre
+
+```
+another plot 
+```{r}
+
+npre2 <- ggplot( pred_species, 
+               aes(year, pred_count))+
+  geom_line(aes(colour=common_name))+
+  geom_point(aes(colour=common_name))+
+  scale_colour_viridis_d(option = "F",
+                         name="Commn Name")+
+  theme_minimal()
+npre2
+```
+
+## question 2
+
+
+
+
+
