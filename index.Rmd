@@ -20,4 +20,5 @@ knitr::opts_chunk$set(echo = TRUE)
 - Gap issues
 - [Writing functions and packages](Function And Packages.Rmd)
 - [Ìntereactive maps with `leaflet`](Interactive_Plot.R)
-- [Practice](Practice_Clean_Manipulation.Rmd) 
+- [Practice Clean Data](Practice_Clean_Manipulation.Rmd) 
+- [Practice GeoSpatial Maps](Practice_GeoSpatial_Analysis.Rmd)
